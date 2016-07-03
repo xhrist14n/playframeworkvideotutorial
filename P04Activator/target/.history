@@ -1,0 +1,15 @@
+clear
+exit
+help 
+help run 
+help compile
+help test
+run
+compile
+run
+exit
+run
+test
+console
+exit
+run

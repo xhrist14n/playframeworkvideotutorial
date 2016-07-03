@@ -1,0 +1,43 @@
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Initial source changes: [0m
+[0m[[0mdebug[0m] [0m[naha] 	removed:Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	added: Set(/home/guest/play/classes/P04Activator/test/ApplicationTest.java, /home/guest/play/classes/P04Activator/test/IntegrationTest.java)[0m
+[0m[[0mdebug[0m] [0m[naha] 	modified: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated products: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] External API changes: API Changes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Modified binary dependencies: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Initial directly invalidated sources: Set(/home/guest/play/classes/P04Activator/test/ApplicationTest.java, /home/guest/play/classes/P04Activator/test/IntegrationTest.java)[0m
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Sources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m[naha] 	product: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	binary dep: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	external source: Set()[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/home/guest/play/classes/P04Activator/test/ApplicationTest.java, /home/guest/play/classes/P04Activator/test/IntegrationTest.java)[0m
+[0m[[0mdebug[0m] [0m[naha] Recompiling all 2 sources: invalidated sources (2) exceeded 50.0% of all sources[0m
+[0m[[0minfo[0m] [0mCompiling 2 Java sources to /home/guest/play/classes/P04Activator/target/scala-2.11/test-classes...[0m
+[0m[[0mdebug[0m] [0mAttempting to call com.sun.tools.javac.api.JavacTool@169c33c directly...[0m
+[0m[[0mdebug[0m] [0mJava compilation took 1.927575734 s[0m
+[0m[[0mdebug[0m] [0mJava analysis took 0.597400579 s[0m
+[0m[[0mdebug[0m] [0mJava compile + analysis took 2.54889353 s[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/guest/play/classes/P04Activator/test/ApplicationTest.java...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /home/guest/play/classes/P04Activator/test/ApplicationTest.java...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/guest/play/classes/P04Activator/test/ApplicationTest.java)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/home/guest/play/classes/P04Activator/test/ApplicationTest.java)[0m
+[0m[[0mdebug[0m] [0m[naha] The /home/guest/play/classes/P04Activator/test/ApplicationTest.java source file has the following regular definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	notify, wait, equals, simpleCheck, notifyAll, ApplicationTest, <init>, toString, getClass, renderTemplate, hashCode.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] Name hashing optimization doesn't apply to non-Scala dependency: /home/guest/play/classes/P04Activator/test/ApplicationTest.java[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /home/guest/play/classes/P04Activator/test/IntegrationTest.java...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /home/guest/play/classes/P04Activator/test/IntegrationTest.java...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/home/guest/play/classes/P04Activator/test/IntegrationTest.java)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/home/guest/play/classes/P04Activator/test/IntegrationTest.java)[0m
+[0m[[0mdebug[0m] [0m[naha] The /home/guest/play/classes/P04Activator/test/IntegrationTest.java source file has the following regular definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	notify, test, wait, equals, notifyAll, IntegrationTest, <init>, toString, getClass, hashCode.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] Name hashing optimization doesn't apply to non-Scala dependency: /home/guest/play/classes/P04Activator/test/IntegrationTest.java[0m
+[0m[[0mdebug[0m] [0m[naha] New invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Previously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] All newly invalidated sources after taking into account (previously) recompiled sources:Set()[0m
