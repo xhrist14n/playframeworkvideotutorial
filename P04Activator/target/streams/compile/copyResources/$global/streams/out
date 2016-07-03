@@ -1,4 +1,0 @@
-[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
-[0m[[0mdebug[0m] [0m	(/home/guest/play/classes/P04Activator/conf/logback.xml,/home/guest/play/classes/P04Activator/target/scala-2.11/classes/logback.xml)[0m
-[0m[[0mdebug[0m] [0m	(/home/guest/play/classes/P04Activator/conf/routes,/home/guest/play/classes/P04Activator/target/scala-2.11/classes/routes)[0m
-[0m[[0mdebug[0m] [0m	(/home/guest/play/classes/P04Activator/conf/application.conf,/home/guest/play/classes/P04Activator/target/scala-2.11/classes/application.conf)[0m
