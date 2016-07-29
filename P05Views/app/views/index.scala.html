@@ -1,0 +1,143 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(message: String)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+
+@content = {
+  <div class="container">
+    <div class="header">
+      <ul class="nav nav-pills pull-right" id="menu">
+        <li class="active" id="main">
+          <a ng-href="#/">
+            Inicio
+          </a>
+        </li>
+        <li class="" id="at">
+          <a ng-href="#/at">
+            @@
+          </a>
+        </li>
+        <li id="parameters">
+          <a ng-href="#/parameters">
+            Parametros
+          </a>
+        </li>
+        <li class="" id="iteration">
+          <a ng-href="#/iteration">
+            Iteracion
+          </a>
+        </li>
+        <li class="" id="blockif">
+          <a ng-href="#/blockif">
+            If
+          </a>
+        </li>
+        <li class="" id="blockreuse">
+          <a ng-href="#/blockreuse">
+            Reuso Bloque
+          </a>
+        </li>
+        <li class="" id="expression">
+          <a ng-href="#/expression">
+            Expresion
+          </a>
+        </li>
+        <li class="" id="comments">
+          <a ng-href="#/comments">
+            Comentarios
+          </a>
+        </li>
+        <li class="" id="character">
+          <a ng-href="#/character">
+            Escapar caracter
+          </a>
+        </li>
+        <li class="" id="usecase">
+          <a ng-href="#/usecase">
+            Casos de uso
+          </a>
+        </li>
+        <li class="" id="layout">
+          <a ng-href="#/layout">
+            Diseño
+          </a>
+        </li>
+        <li class="" id="tags">
+          <a ng-href="#/tags">
+            Tags
+          </a>
+        </li>
+        <li class="" id="includes">
+          <a ng-href="#/includes">
+            Includes
+          </a>
+        </li>
+        <li id="about">
+          <a ng-href="#/about">
+            About
+          </a>
+        </li>
+      </ul>
+      <h3 class="text-muted">Play Framework y Vistas (Twirl)</h3>
+    </div>
+
+    <div ng-view="">
+    </div>
+
+    <div class="footer">
+          <div class="row">
+              <div class="col-lg-4 text-center" id="firstsite">
+                  <span class="glyphicon glyphicon-heart">
+                  </span>
+                  <a href="http://javascriptx.wordpress.com">
+                      Javascriptx.Wordpress.Com
+                  </a>
+              </div>
+              <div class="col-lg-4 text-center" id="secondsite">
+                <span class="glyphicon glyphicon-heart">
+                </span>
+                <a href="http://xhrist14n.blogspot.com">
+                    Blogspot
+                </a>
+              </div>
+              <div class="col-lg-4 text-center" id="thirdsite">
+                  <span class="glyphicon glyphicon-heart">
+                  </span>
+                  <a href="http://www.christianportilla.com">
+                      Mi sitio Web
+                  </a>
+              </div>
+          </div>
+  </div>
+}
+@styles = {
+
+}
+@scripts = {
+  <script src='@routes.Assets.at("app/scripts/functions.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/main.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/app.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/main.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/about.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/at.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/blockif.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/blockreuse.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/character.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/comments.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/expression.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/includes.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/iteration.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/layout.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/parameters.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/tags.js")'></script>
+  <script src='@routes.Assets.at("app/scripts/controllers/usecase.js")'></script>
+}
+
+@main("Play Framework")(content)(styles)(scripts)

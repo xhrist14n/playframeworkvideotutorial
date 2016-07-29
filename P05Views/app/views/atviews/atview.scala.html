@@ -1,0 +1,53 @@
+@(person:classes.Data)
+@content={
+  <h3>
+    {{tema}}
+  </h3>
+
+  <p>
+    Nombre:
+    <strong>
+      @person.nombre @person.apellido
+    </strong>
+  </p>
+  <p>
+    Email:
+    <strong>
+      @person.email
+    </strong>
+  </p>
+  @********************************************
+  *******************************************@
+  @********************************************
+  <p>
+    Nombre:
+    <strong>
+      @person.getNombre() @person.getApellido()
+    </strong>
+  </p>
+  <p>
+    Email:
+    <strong>
+      @person.getEmail()
+    </strong>
+  </p>
+  *******************************************@
+  @********************************************
+  *******************************************@
+  @********************************************
+  <p>
+    Nombre:
+    <strong>
+      @(person.getNombre() + " " + person.getApellido())
+    </strong>
+  </p>
+  <p>
+    Email:
+    <strong>
+      @person.getEmail()
+    </strong>
+  </p>
+  @********************************************
+  *******************************************@
+}
+@base(content)(person)

@@ -1,0 +1,51 @@
+{
+  "name": "appview",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "modernizr": "~2.8.3",
+    "jquery": "^3.1.0",
+    "angular": "angularjs#^1.5.7",
+    "font-awesome": "^4.6.3",
+    "es5-shim": "^4.5.9",
+    "json3": "^3.3.2",
+    "html5shiv": "^3.7.3",
+    "respond": "respondJS#^1.4.2",
+    "googletagmanager": "^0.0.2",
+    "angular-resource": "^1.5.7",
+    "angular-cookies": "^1.5.7",
+    "angular-sanitize": "^1.5.7",
+    "animate.css": "^3.5.2",
+    "angular-animate": "^1.5.7",
+    "angular-touch": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "angular-mocks": "^1.5.7",
+    "angular-scenario": "^1.5.7",
+    "bootbox.js": "bootbox#^4.4.0"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js",
+        "dist/fonts/*"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.svg",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/FontAwesome.otf"
+      ]
+    }
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}

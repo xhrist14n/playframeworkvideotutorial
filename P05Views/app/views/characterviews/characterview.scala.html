@@ -1,0 +1,14 @@
+@(article: String)
+
+@content={
+  <h3>
+    {{tema}}
+  </h3>
+
+  <p>
+    @Html(article)
+  </p>
+
+
+}
+@base(content)(article)

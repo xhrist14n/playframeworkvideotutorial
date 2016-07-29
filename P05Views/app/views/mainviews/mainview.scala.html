@@ -1,0 +1,19 @@
+
+@(title:String="")(informacion:String="")
+
+@content={
+  <hr>
+  <h3>
+    Curso : @title
+  </h3>
+  <hr>
+  <h4>
+    {{tema}}
+  </h4>
+  <hr>
+  <h4>
+    @informacion
+  </h4>
+  <hr>
+}
+@base(title)(informacion)(content)

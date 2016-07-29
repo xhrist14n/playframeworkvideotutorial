@@ -1,0 +1,38 @@
+@(persons: List[classes.Data])
+
+@title(text: String) = @{
+  text.split(' ').map(_.capitalize).mkString(" ")
+}
+
+@display(person: classes.Data) = {
+  <strong>
+    @person.getNombre()
+  </strong>,
+  <strong>
+    @person.getApellido()
+  </strong>
+
+  <strong>
+    @person.getEmail()
+  </strong>
+}
+
+@content={
+  <h3>
+    {{tema}}
+  </h3>
+  <p>
+    Titulo:
+  </p>
+  <h4>
+    @title("Reuso de bloques de plantillas")
+  </h4>
+  <ul>
+    @for(p <- persons) {
+      <li>
+        @display(p)
+      </li>
+    }
+  </ul>
+}
+@base(content)(persons)

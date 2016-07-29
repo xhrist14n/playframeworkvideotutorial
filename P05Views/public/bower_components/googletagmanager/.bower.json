@@ -1,0 +1,39 @@
+{
+  "name": "googletagmanager",
+  "main": "googletagmanager.js",
+  "version": "0.0.2",
+  "homepage": "https://github.com/cofounders/googletagmanager",
+  "authors": [
+    "Sebastiaan Deckers <seb@ninja.sg>"
+  ],
+  "description": "Google Tag Manager loader for web apps",
+  "keywords": [
+    "google",
+    "tag",
+    "manager",
+    "gtm",
+    "analytics"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "/*.json",
+    "/*.md",
+    "/*.txt",
+    "Gruntfile.js",
+    "node_modules",
+    "bower_components",
+    "grunt",
+    "tests"
+  ],
+  "_release": "0.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.2",
+    "commit": "cc4cb0f64e5ae72af0bae4ea912bea2e48025c6f"
+  },
+  "_source": "https://github.com/cofounders/googletagmanager.git",
+  "_target": "^0.0.2",
+  "_originalSource": "googletagmanager",
+  "_direct": true
+}

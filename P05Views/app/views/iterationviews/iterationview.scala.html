@@ -1,0 +1,15 @@
+@(persons:  List[classes.Data])
+@content={
+  <h3>
+    {{tema}}
+  </h3>
+  <ul>
+    @for(p <- persons) {
+      <li>
+        @p.getNombre() - @p.getApellido() - @p.getEmail()
+      </li>
+    }
+  </ul>
+
+}
+@base(persons)(content)

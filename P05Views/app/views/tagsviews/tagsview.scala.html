@@ -1,0 +1,17 @@
+@import tags._
+
+@content={
+  <h3>
+    {{tema}}
+  </h3>
+
+  @notice("error") { color =>
+    Oops, something is <span style="color:@color">wrong!</span>
+  }
+
+  @notice("success") { color =>
+    Process is in <span style="color:@color">success!</span>
+  }
+
+}
+@base(content)

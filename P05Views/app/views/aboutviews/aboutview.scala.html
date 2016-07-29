@@ -1,0 +1,32 @@
+@content={
+  <h3>
+    {{tema}}
+  </h3>
+  <hr/>
+  <h4>
+    Curso:
+    <strong>
+      {{curso}}
+    </strong>
+  </h4>
+  <hr/>
+  <p>
+    Autor : {{autor.nombres}}, <span ng-bind="autor.apellidos"></span>
+  </p>
+  <p>
+    Email : {{autor.email}}
+  </p>
+  <p>
+    Blog:
+    <a href="{{autor.blog}}">
+      {{autor.blog}}
+    </a>
+  </p>
+  <p>
+    Web:
+    <a href="{{autor.web}}">
+      {{autor.web}}
+    </a>
+  </p>
+}
+@base(content)

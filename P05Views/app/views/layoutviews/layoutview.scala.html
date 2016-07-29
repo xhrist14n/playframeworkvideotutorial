@@ -1,0 +1,21 @@
+@(detailed:String="")(text:String="")
+
+@detail={
+  <p>
+    @detailed
+  </p>
+}
+
+@information={
+  <p>
+    @text
+  </p>
+}
+
+@content={
+  <h3>
+    {{tema}}
+  </h3>
+}
+
+@base(content)(detail)(information)

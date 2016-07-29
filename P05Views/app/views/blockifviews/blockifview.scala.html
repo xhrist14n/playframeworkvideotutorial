@@ -1,0 +1,22 @@
+@(flag: Boolean)(persons:  List[classes.Data])
+
+@content={
+  <h3>
+    {{tema}}
+  </h3>
+  @if( persons.isEmpty() ) {
+    <h4>no hay datos por mostrar</h4>
+  } else {
+    <h4>hay @persons.size() personas registradas!</h4>
+  }
+  @if(flag==true){
+    <h4>
+        Data validada!
+    </h4>
+  }else{
+    <h4>
+        Data no validada!
+    </h4>
+  }
+}
+@base(content)(flag)(persons)

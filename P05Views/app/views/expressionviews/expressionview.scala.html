@@ -1,0 +1,18 @@
+@(persons: List[classes.Data])(person: classes.Data)
+
+@**********************************
+las expresiones siguen la convencion
+mostrada arriba
+***********************************@
+
+@display(person: classes.Data) = {
+  <strong>@person.getNombre()</strong>, <strong> @person.getApellido()</strong>
+}
+
+@content={
+  <h3>
+    {{tema}}
+  </h3>
+  @display(person)
+}
+@base(content)(persons)(person)
