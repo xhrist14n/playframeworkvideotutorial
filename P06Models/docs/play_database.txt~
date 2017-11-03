@@ -1,0 +1,107 @@
+Play Framework Generación de modelo de CRUD 
+ 
+-Conexión a base de datos 
+	
+-> Configuring JDBC connection pools
+
+Play provides a plugin for managing JDBC connection pools. You can configure as many databases as you need.
+
+To enable the database plugin add javaJdbc in your build dependencies :
+
+libraryDependencies += javaJdbc
+Then you must configure a connection pool in the conf/application.conf file. By convention the default JDBC data source must be called default:
+
+# Default database configuration
+db.default.driver=org.h2.Driver
+db.default.url="jdbc:h2:mem:play"
+
+->H2 database engine connection properties
+
+# Default database configuration using H2 database engine in an in-memory mode
+db.default.driver=org.h2.Driver
+db.default.url="jdbc:h2:mem:play"
+# Default database configuration using H2 database engine in a persistent mode
+db.default.driver=org.h2.Driver
+db.default.url="jdbc:h2:/path/to/db-file"
+The details of the H2 database URLs are found from H2 Database Engine Cheat Sheet.
+
+->SQLite database engine connection properties
+# Default database configuration using SQLite database engine
+db.default.driver=org.sqlite.JDBC
+db.default.url="jdbc:sqlite:/path/to/db-file"
+
+->PostgreSQL database engine connection properties
+# Default database configuration using PostgreSQL database engine
+db.default.driver=org.postgresql.Driver
+db.default.url="jdbc:postgresql://database.example.com/playdb"
+
+->MySQL database engine connection properties
+# Default database configuration using MySQL database engine
+# Connect to playdb as playdbuser
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url="jdbc:mysql://localhost/playdb"
+db.default.username=playdbuser
+db.default.password="a strong password"
+
+-> Configuring the JDBC Driver dependency
+
+Other than for the h2 in-memory database, useful mostly in development mode, Play does not provide any database drivers. Consequently, to deploy in production you will have to add your database driver as an application dependency.
+
+For example, if you use MySQL5, you need to add a dependency for the connector:
+
+libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.36"
+
+
+
+-Usando Ebean ORM 
+
+-> Configuring Ebean
+Play comes with the Ebean ORM. To enable it, add the Play Ebean plugin to your SBT plugins in project/plugins.sbt:
+
+addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "4.0.6")
+
+And then modify your build.sbt to enable the Play Ebean plugin:
+
+lazy val myProject = (project in file("."))
+  .enablePlugins(PlayJava, PlayEbean)
+
+-> Configuring models
+Play Ebean comes with two components, a runtime library that actually talks to the database, and an sbt plugin that enhances the compiled Java bytecode of your models for use with Ebean. Both of these components need to be configured so that Ebean knows where your models are.
+
+Configuring the runtime library
+The runtime library can be configured by putting the list of packages and/or classes that your Ebean models live in your application configuration file. For example, if all your models are in the models package, add the following to conf/application.conf:
+
+ebean.default = ["models.*"]
+This defines a default Ebean server, using the default data source, which must be properly configured. You can also override the name of the default Ebean server by configuring ebeanconfig.datasource.default property. 
+
+
+->Using Model superclass
+Ebean defines a convenient superclass for your Ebean model classes, com.avaje.ebean.Model. Here is a typical Ebean class, mapped in Play:
+
+package models;
+
+import java.util.*;
+import javax.persistence.*;
+
+import com.avaje.ebean.Model;
+import play.data.format.*;
+import play.data.validation.*;
+
+@Entity
+public class Task extends Model {
+
+    @Id
+    @Constraints.Min(10)
+    public Long id;
+
+    @Constraints.Required
+    public String name;
+
+    public boolean done;
+
+    @Formats.DateTime(pattern="dd/MM/yyyy")
+    public Date dueDate = new Date();
+
+    public static Finder<Long, Task> find = new Finder<Long,Task>(Task.class);
+}
+

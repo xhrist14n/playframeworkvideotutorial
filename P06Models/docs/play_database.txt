@@ -1,0 +1,116 @@
+Play Framework Generación de modelo de CRUD
+
+-Conexión a base de datos
+
+-> Configuracion de conexion por medio de JDBC
+
+Play provee un plugin para administrar el pool de conexiones JDBC.
+Se puede configurar las bases de datos como se necesite.
+Para habilitar el plugin de base de datos se agrega javaJdbc en las dependencias:
+
+libraryDependencies += javaJdbc
+
+Luego se debe configurar el pool de conexion en el archivo  conf/application.conf.
+Por convencion el data source por defecto JDBC debe ser llamado "default":
+
+db.default.driver=org.h2.Driver
+db.default.url="jdbc:h2:mem:play"
+
+->Conexion para el Motor de Base de datos H2
+
+# Modo in-memory
+db.default.driver=org.h2.Driver
+db.default.url="jdbc:h2:mem:play"
+
+# Modo persistente
+db.default.driver=org.h2.Driver
+db.default.url="jdbc:h2:/path/to/db-file"
+
+
+->Conexion para el motor de base de datos SQLite
+
+db.default.driver=org.sqlite.JDBC
+db.default.url="jdbc:sqlite:/path/to/db-file"
+
+->Conexion para el motor de base de datos PostgreSQL
+
+db.default.driver=org.postgresql.Driver
+db.default.url="jdbc:postgresql://database.example.com/playdb"
+
+->Conexion para el motor de base de datos MySQL
+
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url="jdbc:mysql://localhost/playdb"
+db.default.username=playdbuser
+db.default.password="a strong password"
+
+-> Configurando el driver JBDC
+
+El motor de base de datos H2 in memory es util para el modo de desarrollo, Play no provee los drivers de base de datos.
+Consecuentemente, para despliegue en produccion se tendra que agregar un driver de base de datos como una dependencia de aplicacion.
+
+Por ejemplo, si se usa MySql5, se necesita agregar una dependencia para el conector:
+
+libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.36"
+
+--------------------------------------------------------------------------------------------------------------------------
+
+-Usando Ebean ORM
+
+-> Configurando Ebean
+
+Play viene con el ORM Ebean. Para habilitarlo, se agrega el plugin de Play Ebean para que los plugins esten en SBT project/plugins.sbt:
+
+addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "4.0.6")
+
+Y luego se modifica tu build.sbt para habilitar el plugin Play Ebean:
+
+lazy val myProject = (project in file("."))
+  .enablePlugins(PlayJava, PlayEbean)
+
+-> Configurando modelos
+
+Ebean de play viene con dos componentes, una libreria de tiempo de ejecucion que actualmente se comunica con la base de datos, y un plugin sbt que mejora el codigo bytecode compilado del modelo que usa Ebean.
+Ambos componentes necesitan ser configurados de modo que Ebean sepa donde estaran los modelos.
+
+-> Configurando la libreria de tiempo de ejecucion
+
+la libreria de tiempo de ejecucion puede ser configurado poniendo la lista de paquetes y/o las clases que los modelos Ebean que esten presentes en la configuracion de la aplicacion. Por ejemplo, si todos los modelos estan en el paquete models, y agregar en el archivo de configuracion  conf/application.conf:
+
+ebean.default = ["models.*"]
+
+Esto define como servidor por defecto a Ebean, usando el data source por defecto, el cual debe ser configurado apropiadamente. Se puede tambien sobrecargar el nombre por defecto del servidor por medio de configuracion de la propiedad:  "ebeanconfig.datasource.default".
+
+
+->Using Model superclass
+
+Ebean define una clase que es adecuada para las clases Ebean, com.avaje.ebean.Model.
+Este es el codigo para una clase tipica Ebean, mapeada en Play:
+
+package models;
+
+import java.util.*;
+import javax.persistence.*;
+
+import com.avaje.ebean.Model;
+import play.data.format.*;
+import play.data.validation.*;
+
+@Entity
+public class Task extends Model {
+
+    @Id
+    @Constraints.Min(10)
+    public Long id;
+
+    @Constraints.Required
+    public String name;
+
+    public boolean done;
+
+    @Formats.DateTime(pattern="dd/MM/yyyy")
+    public Date dueDate = new Date();
+
+    public static Finder<Long, Task> find = new Finder<Long,Task>(Task.class);
+}
+
