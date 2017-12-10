@@ -1,0 +1,65 @@
+07 Uso de Acciones, Controladores y Resultados en Play Framework
+
+->Que es una accion (Action)
+La mayoria de las request son recibidas por la aplicacion de Play siendo manejadas por medios de una Action.
+Una Action es basicamente un metodo Java que procesa los parametros de request, y produce un resultado (Result)  a ser enviado al cliente.
+
+public Result index() {
+    return ok("Request obtenida: " + request() + "!");
+}
+Una Action retorna un valor de tipo play.mvc.Result , representando la respuesta HTTP a ser enviada al cliente web.
+En el ejemplo la funcion ok contruye una respuesta conteniendo el cuerpo de la respuesta en formato text/plain.
+
+-> Controladores (Controller)
+
+Un controlador es nada mas que un a clase que hereda de play.mvc.Controller y agrupa varios grupos de metodos para acciones.
+
+package controllers;
+
+import play.*;
+import play.mvc.*;
+
+public class Application extends Controller {
+
+    public Result index() {
+        return ok("Esto funciona !");
+    }
+
+}
+La mas simple sintaxis es definir una accion que es un metodo sin parametros que retorna un valor de tipo Result.
+Y una accion con parametros seria asi:
+
+public Result index(String name) {
+    return ok("Hola " + name);
+}
+
+Estos parametros seran resueltos por medio de rutas y deben ser llenadas con valores de la URL de la request.
+Los valores de parametro pueden ser extraidos desde el URL path o desde el URL query string.
+
+-> Resultados (Result)
+
+Hay una gran variedad de resultados posibles: (segun status code)
+
+Result ok = ok("Hello world!");
+Result notFound = notFound();
+Result pageNotFound = notFound("<h1>Page not found</h1>").as("text/html");
+Result badRequest = badRequest(views.html.form.render(formWithErrors));
+Result oops = internalServerError("Oops");
+Result anyStatus = status(488, "Strange response type");
+
+-> Redirecciones (Result)
+Las redirecciones son tambien del tipo Result:
+
+
+public Result index() {
+    return redirect("/user/home");
+}
+
+public Result index() {
+    return temporaryRedirect("/user/home");
+}
+
+​
+Mail:     xhrist14n@gmail.com​
+Blog:     http://xhrist14n.blogspot.com​
+Site:     http://www.christianportilla.com
