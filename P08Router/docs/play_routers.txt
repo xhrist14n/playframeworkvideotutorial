@@ -31,84 +31,112 @@ o por medio de la declaracion de cada metodo accion de forma estatica.
 
 --La sintaxis del archivo de rutas
 
-conf/routes is the configuration file used by the router. This file lists all of the routes needed by the application. Each route consists of an HTTP method and URI pattern associated with a call to an action method.
+el archivo de configuracion conf/routes es usado por el router.
 
-Let’s see what a route definition looks like:
+Este archivo enlista todas las rutas necesarias para la applicacion,
+
+Cada ruta consiste de un metodo HTTP y un patron URI asociado con la llamada al metodo de accion.
+
+Vamos a ver lo que la definicion de rutas como luce:
 
 GET   /clients/:id          controllers.Clients.show(id: Long)
 
-    Note: in the action call, the parameter type comes after the parameter name, like in Scala.
+Nota .- en la llamada de accion, el parametro de tipo de dato viene despues del nombre del parametro, como en scala.
 
-Each route starts with the HTTP method, followed by the URI pattern. The last element of a route is the call definition.
+Cada ruta inicia con el metodo HHTP, seguido del patron URI. 
+El ultimo elemento de un ruta es la definicion de la llamada.
 
-You can also add comments to the route file, with the # character:
+Se puede tambien agregar comentarios al archivo de rutas, con el caracter #:
 
-# Display a client.
+# Mostrar cliente
 GET   /clients/:id          controllers.Clients.show(id: Long)
 
-The HTTP method
+--Metodo HHTP
+El metodo HHTp puede ser alguno de los metodos validos soportados por HTTP (GET, PATCH, POST, PUT, DELETE, HEAD, OPTIONS).
 
-The HTTP method can be any of the valid methods supported by HTTP (GET, PATCH, POST, PUT, DELETE, HEAD, OPTIONS).
-The URI pattern
+--El patron URI
 
-The URI pattern defines the route’s request path. Some parts of the request path can be dynamic.
-Static path
+El patron URI define el la ruta de el petitorio.
 
-For example, to exactly match GET /clients/all incoming requests, you can define this route:
+Algunas partes de la ruta de petitorios  puede ser dinamica:
+
+--Ruta estatica
+
+Por ejemplo, una coincidencia exacta GET /clients/all de los petitorios de entrada, se puede definir esta ruta de la siguiente forma:
 
 GET   /clients/all          controllers.Clients.list()
 
-Dynamic parts
+-- Partes dinamicas
 
-If you want to define a route that, say, retrieves a client by id, you need to add a dynamic part:
+
+Si tu deseas definir una ruta que pueda recuperar un cliente basado en id, se necesita agregar una parte dinamica:
 
 GET   /clients/:id          controllers.Clients.show(id: Long)
 
-    Note: A URI pattern may have more than one dynamic part.
+Nota .- Un patron URI puede tener mas de una parte dinamica.
 
-The default matching strategy for a dynamic part is defined by the regular expression [^/]+, meaning that any dynamic part defined as :id will match exactly one URI path segment. Unlike other pattern types, path segments are automatically URI-decoded in the route, before being passed to your controller, and encoded in the reverse route.
-Dynamic parts spanning several /
+La estrategia por defecto para las partes dinamicas es definido por la expresion regular [^/]+,
+significando que alguna parte dinamica es definida como  :id conincidira exactamente con un segmento de ruta URI.
+De modo que los otros tipos de patrones, segmentos de ruta son automaticamente decodificados de la ruta, 
+antes de ser pasado al controlador, y codificado en la ruta reversa.
 
-If you want a dynamic part to capture more than one URI path segment, separated by forward slashes, you can define a dynamic part using the *id syntax, also known as a wildcard pattern, which uses the .* regular expression:
+
+--Partes dinamicas divididas por /
+
+Si se desea una parte dinamica para capturar mas de un segmento de ruta URI, 
+separado por slashes, se puede definir una parte dinamica usando la sintaxis *id, 
+tambien conocido como patron wildcard, las cuales usan la exprresion regular  .* :
 
 GET   /files/*name          controllers.Application.download(name)
 
-Here, for a request like GET /files/images/logo.png, the name dynamic part will capture the images/logo.png value.
+Aqui para cada petitorio como  GET /files/images/logo.png, la parte dinamica se denomina asi para capturar por valor el string  images/logo.png.
 
-Note that dynamic parts spanning several / are not decoded by the router or encoded by the reverse router. It is your responsibility to validate the raw URI segment as you would for any user input. The reverse router simply does a string concatenation, so you will need to make sure the resulting path is valid, and does not, for example, contain multiple leading slashes or non-ASCII characters.
-Dynamic parts with custom regular expressions
+se debe tomar nota de que las partes dinamicas se dividen varias veces con / no son decodificadas por el router o codificadas por el router reverso
+Esto es responsabilidad de validar el segmento URI tal como se haria por entrada de usuario.
+El router reverso simplemente hace una concatenacion de cadenas de caracteres, de modo que se necesitara asegurarse que las rutas son validas y  en caso no lo sean,
+por ejemplo algunas contienes slashes o caracteres no ASCII.
 
-You can also define your own regular expression for a dynamic part, using the $id<regex> syntax:
+Partes Dinamicas con espresiones regulares pwersonalizadas
+Se puede tambien definir nuestras propias expresiones regulares segun las rutas dinamicas, usando sintaxis de expresiones regulares como $id<regex> :
 
 GET   /items/$id<[0-9]+>    controllers.Items.show(id: Long)
 
-Just like with wildcard routes, the parameter is not decoded by the router or encoded by the reverse router. You’re responsible for validating the input to make sure it makes sense in that context.
+Justo como con las rutas con wildcard, el parametro no es decodificado por el router o codificado por el router reverso.
+Uno se hace responsable por validar los datos ingresados para asegurarte que tenga sentido en tal contexto.
 
-It is also possible to apply modifiers by preceding the route with a line starting with a +. This can change the behavior of certain Play components. One such modifier is the “nocsrf” modifier to bypass the CSRF filter:
+Es tambien posible aplicar mfificadores por medio de predecer a la ruta con una linea comenzando con un +.
+Este cambio produce un comportamiento segun cada componente de Play Framework.
+Uno de tales modificadores es el modificador “nocsrf” para evitar el filtro CSRF:
 
 + nocsrf
 POST  /api/new              controllers.Api.newThing()
 
-Call to action generator method
 
-The last part of a route definition is the call. This part must define a valid call to an action method.
+--Lamada a el metodo generador de accion
 
-If the method does not define any parameters, just give the fully-qualified method name:
+La ultima parte de una definicion de ruta es la llamada.
+
+Esta parte debe definir una llamada valida a un metodo de accion.
+
+Si el metodo no define ningun parametro, solo da el nombre ampliamente calificado:
 
 GET   /                     controllers.Application.homePage()
 
-If the action method defines parameters, the corresponding parameter values will be searched for in the request URI, either extracted from the URI path itself, or from the query string.
+Si el metodo de accion define los parametros, el parametro correspondiente de los valores sera buscado en el petitorio URI, o extraido desde la ruta URI
+a si mismo o desde la conculta de la cadena de caracteres.
 
-# Extract the page parameter from the path.
+
+# Extraer el parametro de pagina desde la ruta
 # i.e. http://myserver.com/index
 GET   /:page                controllers.Application.show(page)
 
 Or:
 
-# Extract the page parameter from the query string.
+# Extraer el parametro de pagin desde la conculta de cadena de caracteres
 # i.e. http://myserver.com/?page=index
 GET   /                     controllers.Application.show(page)
 
+Aqui esta el metodo mostrado correpondiente a la definicion del controlador controllers.Application:
 Here is the corresponding show method definition in the controllers.Application controller:
 
 public Result show(String page) {
@@ -116,55 +144,64 @@ public Result show(String page) {
     return ok(content).as("text/html");
 }
 
-Parameter types
+--Tipos de parametro
 
-For parameters of type String, the parameter type is optional. If you want Play to transform the incoming parameter into a specific Scala type, you can add an explicit type:
+Para los parametros del tipo de cadena, el tipo de parametro es opcional.
+Si tu deseas que Play framework transforma el parametro de entrada en un especifico tipo Scala, se puede agregar un tipo explicito:
 
 GET   /clients/:id          controllers.Clients.show(id: Long)
 
-Then use the same type for the corresponding action method parameter in the controller:
+Luego usar el mismo tipo para la correspondiente parametro del metodo de accion en el controlador:
 
 public Result show(Long id) {
     Client client = clientService.findById(id);
     return ok(views.html.Client.show(client));
 }
 
-    Note: The parameter types are specified using a suffix syntax. Also, the generic types are specified using the [] symbols instead of <>, as in Java. For example, List[String] is the same type as the Java List<String>.
+Nota.- los tipos de parametro son especificados usando una sintaxis de sufijo.
+Tambien los tipos genericos son especificados usando los simbolos [] o <> como en Java
+Por ejemplo: 
+List[String] es el mismo tipo como en Java List<String>.
 
-Parameters with fixed values
+--Parametros con valores fijos 
 
-Sometimes you’ll want to use a fixed value for a parameter:
+Algunas veces se deseara un valor fijo para un parametro:
 
-# Extract the page parameter from the path, or fix the value for /
+# Extraer el parametro de pagina desde la ruta o fijar el valor por medio de /
 GET   /                     controllers.Application.show(page = "home")
 GET   /:page                controllers.Application.show(page)
 
-Parameters with default values
-
-You can also provide a default value that will be used if no value is found in the incoming request:
+--Parametros con valores por defecto
+Se puede tambien proveer un valor por defecto que sera usado si no hay un valor encontrado en el petitorio de entrada:
 
 # Pagination links, like /clients?page=3
 GET   /clients              controllers.Clients.list(page: Int ?= 1)
 
-Optional parameters
+--Parametros opcionales
 
-You can also specify an optional parameter that does not need to be present in all requests:
+También se puede especificar un parámetro opcional que no tiene que estar presente en todas las solicitudes:
 
 # The version parameter is optional. E.g. /api/list-all?version=3.0
 GET   /api/list-all         controllers.Api.list(version ?= null)
+--Ruteo prioritario
 
-Routing priority
 
-Many routes can match the same request. If there is a conflict, the first route (in declaration order) is used.
-Reverse routing
+Muchas rutas pueden emparejar la misma solicitud. Si hay un conflicto, la primera ruta (en el pedido de la declaración) se usa.
 
-The router can be used to generate a URL from within a Java call. This makes it possible to centralize all your URI patterns in a single configuration file, so you can be more confident when refactoring your application.
+--Ruteo Reverso
 
-For each controller used in the routes file, the router will generate a ‘reverse controller’ in the routes package, having the same action methods, with the same signature, but returning a play.mvc.Call instead of a play.mvc.Result.
 
-The play.mvc.Call defines an HTTP call, and provides both the HTTP method and the URI.
+El direccionador puede ser usado para generar un URL desde dentro de una llamada de metodo Java. 
+Esto hace posible centralizar todos sus rutas URI en un archivo de configuración solo,
+ por tanto puede ser más exacto cuando se da una nueva factorización su aplicación.
 
-For example, if you create a controller like:
+Para cada controlador usado en el archivo de rutas, 
+el ruteador generará a un "router inverso" en el paquete de rutas, 
+teniendo los mismos métodos de acción, con la misma firma, pero devolviendo un play.mvc.Call en vez de un play.mvc.Result.
+
+El play.mvc.Call define una llamada del HTTP y proporciona tanto el método del HTTP como el URI.
+
+Por ejemplo, si crea a un controlador como:
 
 package controllers;
 
@@ -179,17 +216,20 @@ public class Application extends Controller {
 
 }
 
-And if you map it in the conf/routes file:
+Y Si se detecta en el archivo de conf/routes:
 
 # Hello action
 GET   /hello/:name          controllers.Application.hello(name)
 
-You can then reverse the URL to the hello action method, by using the controllers.routes.Application reverse controller:
+Puede invertir entonces el URL al método hello de acción, usando el controllers.routes.Controller inverso de la aplicación:
 
 // Redirect to /hello/Bob
 public Result index() {
     return redirect(controllers.routes.Application.hello("Bob"));
 }
+
+
+
 
     Note: There is a routes subpackage for each controller package. So the action controllers.Application.hello can be reversed via controllers.routes.Application.hello (as long as there is no other route before it in the routes file that happens to match the generated path).
 
