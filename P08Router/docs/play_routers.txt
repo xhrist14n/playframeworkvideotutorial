@@ -229,19 +229,30 @@ public Result index() {
 }
 
 
+Nota .- hay un subpaquete de rutas para cada paquete de controladores.
+
+Asi que la accion controllers.Application.hello puede ser redirigida via controllers.routes.Application.hello 
+(asi no haya una ruta antes dentro del archivo de rutas que puede encajar en la ruta deseada para la ruta generada).
 
 
-    Note: There is a routes subpackage for each controller package. So the action controllers.Application.hello can be reversed via controllers.routes.Application.hello (as long as there is no other route before it in the routes file that happens to match the generated path).
 
-The reverse action method works quite simply: it takes your parameters and substitutes them back into the route pattern. In the case of path segments (:foo), the value is encoded before the substitution is done. For regex and wildcard patterns the string is substituted in raw form, since the value may span multiple segments. Make sure you escape those components as desired when passing them to the reverse route, and avoid passing unvalidated user input.
+The reverse action method works quite simply: it takes your parameters and substitutes them back into the route pattern. 
+In the case of path segments (:foo), the value is encoded before the substitution is done. 
+For regex and wildcard patterns the string is substituted in raw form, since the value may span multiple segments. 
+Make sure you escape those components as desired when passing them to the reverse route, and avoid passing unvalidated user input.
 Relative routes
 
-There are instances where returning a relative route instead of an absolute may be useful. The routes returned by play.mvc.Call are always absolute (they lead with a /), which can lead to problems when requests to your web application are rewritten by HTTP proxies, load balancers, and API gateways. Some examples where using a relative route would be useful include:
+There are instances where returning a relative route instead of an absolute may be useful. The routes returned by play.mvc.Call 
+are always absolute (they lead with a /), which can lead to problems when requests to your web application are rewritten by HTTP proxies, 
+load balancers, and API gateways. Some examples where using a relative route would be useful include:
 
-    Hosting an app behind a web gateway that prefixes all routes with something other than what is configured in your conf/routes file, and roots your application at a route it’s not expecting.
+    Hosting an app behind a web gateway that prefixes all routes with something other than what is configured in your conf/routes file,
+     and roots your application at a route it’s not expecting.
     When dynamically rendering stylesheets, you need asset links to be relative because they may end up getting served from different URLs by a CDN.
 
-To be able to generate a relative route you need to know what to make the target route relative to (the start route). The start route can be retrieved from the current RequestHeader. Therefore, to generate a relative route it’s required that you pass in your current RequestHeader or the start route as a String parameter.
+To be able to generate a relative route you need to know what to make the target route relative to (the start route). The start route can be 
+retrieved from the current RequestHeader. Therefore, to generate a relative route it’s required that you pass in your current RequestHeader or 
+the start route as a String parameter.
 
 For example, given controller endpoints like:
 
@@ -269,7 +280,8 @@ And if you map it in the conf/routes file:
 GET     /foo/bar/hello              controllers.Relative.helloview
 GET     /hello/:name                controllers.Relative.hello(name)
 
-You can then define relative routes using the reverse router as before and include an additional call to relativeTo(play.mvc.RequestHeader requestHeader):
+You can then define relative routes using the reverse router as before and include an additional call to 
+relativeTo(play.mvc.RequestHeader requestHeader):
 
 @(name: String, request: Http.RequestHeader)
 
@@ -309,4 +321,5 @@ GET   /clients    controllers.Default.error
 # Responds with 501 Not Implemented
 GET   /posts      controllers.Default.todo
 
-In this example, GET / redirects to an external website, but it’s also possible to redirect to another action (such as /posts in the above example).
+In this example, GET / redirects to an external website,
+ but it’s also possible to redirect to another action (such as /posts in the above example).
