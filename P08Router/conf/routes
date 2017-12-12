@@ -5,9 +5,9 @@
 # An example controller showing a sample home page
 
 #urls for app without comments ...
-GET     /                            controllers.HomeController.index
-
-
+GET     /                           controllers.HomeController.index
+GET   /client/:id                   controllers.Client.show(id: Long)
+GET   /client/all                  controllers.Client.list()
 
 # commentary urls 
 #GET     /action                      controllers.HomeController.action
