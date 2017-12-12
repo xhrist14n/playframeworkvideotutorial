@@ -3,12 +3,18 @@
 # ~~~~
 
 # An example controller showing a sample home page
+
+#urls for app without comments ...
 GET     /                            controllers.HomeController.index
-GET     /action                      controllers.HomeController.action
-GET     /alguien/:name               controllers.HomeController.alguien(name: String)
-GET     /resultado/:codigo           controllers.HomeController.resultado(codigo: String)
-GET     /redirigir/:url              controllers.HomeController.redirigir(url: String)
-GET     /temporal/:url               controllers.HomeController.temporal(url: String)
+
+
+
+# commentary urls 
+#GET     /action                      controllers.HomeController.action
+#GET     /alguien/:name               controllers.HomeController.alguien(name: String)
+#GET     /resultado/:codigo           controllers.HomeController.resultado(codigo: String)
+#GET     /redirigir/:url              controllers.HomeController.redirigir(url: String)
+#GET     /temporal/:url               controllers.HomeController.temporal(url: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
