@@ -234,27 +234,28 @@ Nota .- hay un subpaquete de rutas para cada paquete de controladores.
 Asi que la accion controllers.Application.hello puede ser redirigida via controllers.routes.Application.hello 
 (asi no haya una ruta antes dentro del archivo de rutas que puede encajar en la ruta deseada para la ruta generada).
 
+El metodo de  accion reversa trabaja simplemente bien: se toma los parametros y los sustitutos dentro del patron de ruta.
+En el caso de los segmentos de ruta (:foo), el valor es codificado antes de la substitucion  asi es hecho.
+Para las expresiones regulares y los patrones de wildcard de las cadenas de caracteres son sustituidas en los datos del formulario, desde el valor
+se puede dividir en multiples segmentos.
+Hay que asegurar como escapar los componentes deseados cuando se pasan los datos a la ruta reversa, y hay que evitar pasar datos no validados.
+
+--Rutas relativas
 
 
-The reverse action method works quite simply: it takes your parameters and substitutes them back into the route pattern. 
-In the case of path segments (:foo), the value is encoded before the substitution is done. 
-For regex and wildcard patterns the string is substituted in raw form, since the value may span multiple segments. 
-Make sure you escape those components as desired when passing them to the reverse route, and avoid passing unvalidated user input.
-Relative routes
+Hay instancias donde sw retorna una ruta relativa en vez de una ruta absoluta puede ser util.
+Las rutas retornadas por  play.mvc.Call  son siempre absolutas (ellos se guian con /), la cual  puede tener como consecuencia problemas 
+cuando los petitorios a la aplicacion web son reescritos por proxies HTTP,
+balanceadores de carga, y enlaces a la API. Algunos ejemplos donde se usa una ruta relativa seria util incluir:
 
-There are instances where returning a relative route instead of an absolute may be useful. The routes returned by play.mvc.Call 
-are always absolute (they lead with a /), which can lead to problems when requests to your web application are rewritten by HTTP proxies, 
-load balancers, and API gateways. Some examples where using a relative route would be useful include:
+El servicio de una app detras de un gateway wweb que prefija todas las rutas con algun servicio que esta configurado en el archivo conf/routes,
+y las raices de tu aplicacion en una ruta no es lo esperado
+Cuando dinamicamente se dibuja los estilos y se necesita enlazar los recursos web a una ruta relativa estos recursos puede ser servidos desde diferentes URLs o por medio de CDN.
+Puerde ser generada una  ruta relativa que se necesita para saber que se puede crear la ruta objetivo (ruta de inicio). La ruta inicio puede ser recuperada
+desde el actual RequestHeader. Ademas para generar una ruta relativa es requerido que se pueda pasar en el RequestHeader actual o la ruta de inicio como un parametro de 
+cadena de caracteres.
 
-    Hosting an app behind a web gateway that prefixes all routes with something other than what is configured in your conf/routes file,
-     and roots your application at a route it’s not expecting.
-    When dynamically rendering stylesheets, you need asset links to be relative because they may end up getting served from different URLs by a CDN.
-
-To be able to generate a relative route you need to know what to make the target route relative to (the start route). The start route can be 
-retrieved from the current RequestHeader. Therefore, to generate a relative route it’s required that you pass in your current RequestHeader or 
-the start route as a String parameter.
-
-For example, given controller endpoints like:
+Por ejemplo, dado un controlador de extremo como:
 
 package controllers;
 
@@ -273,15 +274,14 @@ public class Relative extends Controller {
 
 }
 
-    Note: The current request is passed to the view template by calling request()
+Nota .- el petitorio actual es pasado a la plantilla de la vista por llamadas request().
 
-And if you map it in the conf/routes file:
+Y si tu detectas en el archivo de conf/routes:
 
 GET     /foo/bar/hello              controllers.Relative.helloview
 GET     /hello/:name                controllers.Relative.hello(name)
 
-You can then define relative routes using the reverse router as before and include an additional call to 
-relativeTo(play.mvc.RequestHeader requestHeader):
+Se puede definir rutas relativas usando el router reverso como antes y incluye una llamada adicional a (play.mvc.RequestHeader requestHeader):
 
 @(name: String, request: Http.RequestHeader)
 
@@ -290,9 +290,11 @@ relativeTo(play.mvc.RequestHeader requestHeader):
 <a href="@routes.Relative.hello(name)">Absolute Link</a>
 <a href="@routes.Relative.hello(name).relativeTo(request)">Relative Link</a>
 
-    Note: The Http.Request passed from the controller is cast to a Http.RequestHeader in the view parameters.
 
-When requesting /foo/bar/hello the generated HTML will look like so:
+Nota .- El  Http.Request pasado desde el controlador es convertido a 
+Http.RequestHeader en los parametros de la vista.
+
+Cuando los petitorios  /foo/bar/hello son generados en el html esto lucira de esta forma:
 
 <!DOCTYPE html>
 <html lang="en">
@@ -305,9 +307,9 @@ When requesting /foo/bar/hello the generated HTML will look like so:
     </body>
 </html>
 
-The Default Controller
-
-Play includes a Default controller which provides a handful of useful actions. These can be invoked directly from the routes file:
+--El controlador por defecto
+Play Framework inluye un controlador por defecto lo cual provee manualmente las acciones utiles
+Estos pueden ser invocados directamente desde el archivo de rutas:
 
 # Redirects to https://www.playframework.com/ with 303 See Other
 GET   /about      controllers.Default.redirect(to = "https://www.playframework.com/")
@@ -321,5 +323,5 @@ GET   /clients    controllers.Default.error
 # Responds with 501 Not Implemented
 GET   /posts      controllers.Default.todo
 
-In this example, GET / redirects to an external website,
- but it’s also possible to redirect to another action (such as /posts in the above example).
+En este ejemplo, GET / redirige a un sitio web externo, 
+pero esto es tambien posible para redirigir a otra accion (tal como /posts en el ejemplo anterior).
