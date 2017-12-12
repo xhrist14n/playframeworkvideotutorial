@@ -1,3 +1,6 @@
+https://www.playframework.com/documentation/2.6.x/JavaRouting
+
+
 -Rutas Http
 
 --Router Http 
@@ -308,7 +311,7 @@ Cuando los petitorios  /foo/bar/hello son generados en el html esto lucira de es
 </html>
 
 --El controlador por defecto
-Play Framework inluye un controlador por defecto lo cual provee manualmente las acciones utiles
+Play Framework inluye un controlador por defecto el cual provee manualmente las acciones utiles
 Estos pueden ser invocados directamente desde el archivo de rutas:
 
 # Redirects to https://www.playframework.com/ with 303 See Other
