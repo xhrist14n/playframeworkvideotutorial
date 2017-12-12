@@ -19,4 +19,9 @@ public class HomeController extends Controller {
       String message = "Primera pagina ... ";
       return ok(message);
     }
+
+    public Result main() {
+      String message = "Primera pagina ... ";
+      return ok(message);
+    }
 }

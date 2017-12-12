@@ -67,7 +67,7 @@ Seq[Any](format.raw/*7.32*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Sun Dec 10 04:23:53 UTC 2017
+                  DATE: Tue Dec 12 22:34:08 UTC 2017
                   SOURCE: /home/vagrant/projects/play/playframeworkvideotutorial/P08Router/app/views/main.scala.html
                   HASH: 6ea0cc6fffc14ad60386de863a153b880fcdcbb3
                   MATRIX: 1206->260|1331->290|1359->292|1439->397|1475->406|1510->414|1536->419|1625->481|1640->487|1703->528|1791->589|1806->595|1867->634|1919->659|1934->665|1996->706|2090->862|2127->872|2155->879|2187->884

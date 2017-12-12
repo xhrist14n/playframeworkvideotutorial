@@ -20,7 +20,7 @@ public class ClientController extends Controller {
       return ok(message);
     }
 
-    public Result show(Long id) {
+    public Result show(int id) {
         List<String > clients = new ArrayList<String>();
         clients.add("Primero");
         clients.add("Segundo");
@@ -31,9 +31,9 @@ public class ClientController extends Controller {
         if(id>=clients.size()){
             client = "Otro";
         }else{
-            client = clents.get(id);
+            client = clients.get(id-1);
         }
-        HashMap<String,String> data = new HasMap<String,String>();
+        HashMap<String,String> data = new HashMap<String,String>();
         data.put("client",client);
         String json = Json.stringify(Json.toJson(data));
         return ok(json).as("application/json");

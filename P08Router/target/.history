@@ -5,3 +5,8 @@ run
 run 
 run
 exit
+run
+clean
+compile
+ls
+exit

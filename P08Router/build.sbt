@@ -26,7 +26,9 @@ testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
 
 // routes generator in build.sbt
 
-routesGenerator := StaticRoutesGenerator
+//routesGenerator := StaticRoutesGenerator
+
+routesGenerator := InjectedRoutesGenerator 
 
 
 
