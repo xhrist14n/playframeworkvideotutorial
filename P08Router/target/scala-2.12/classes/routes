@@ -7,8 +7,12 @@
 #urls for app without comments ...
 GET     /                           controllers.HomeController.main()
 
+GET   /client/all                   controllers.ClientController.list()
+
 GET   /client/:id                   controllers.ClientController.show(id: Integer)
-#GET   /client/all                   controllers.ClientController.list()
+
+GET   /file/*name                  controllers.FileController.download(name)
+
 
 # commentary urls 
 #GET     /action                      controllers.HomeController.action
