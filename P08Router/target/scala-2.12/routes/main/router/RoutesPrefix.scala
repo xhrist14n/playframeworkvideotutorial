@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/vagrant/projects/play/playframeworkvideotutorial/P08Router/conf/routes
-// @DATE:Tue Dec 12 23:49:57 UTC 2017
+// @DATE:Wed Dec 13 00:47:07 UTC 2017
 
 
 package router {

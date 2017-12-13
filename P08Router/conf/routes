@@ -6,15 +6,25 @@
 
 #urls for app without comments ...
 GET     /                           controllers.HomeController.main()
+GET     /home                       controllers.HomeController.home()
+GET     /test                       controllers.HomeController.test()
+GET     /start                      controllers.HomeController.start()
+GET     /other                      controllers.HomeController.other()
 
 GET   /client/all                   controllers.ClientController.list()
 
 GET   /client/:id                   controllers.ClientController.show(id: Integer)
 
-GET   /viewpage/                    controllers.HomeController.viewpage(page = "other")
+GET   /viewpage                     controllers.HomeController.viewpage(page = "other")
 GET   /viewpage/:page               controllers.HomeController.viewpage(page)
 
 GET   /file/*name                   controllers.FileController.download(name)
+
+
+GET   /google                       controllers.Default.redirect(to = "https://www.google.com/")
+GET   /data                         controllers.Default.notFound
+GET   /error                        controllers.Default.error
+GET   /info                         controllers.Default.todo
 
 
 # commentary urls 

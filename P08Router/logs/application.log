@@ -1,0 +1,11 @@
+2017-12-13 00:49:17,203 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
+2017-12-13 00:49:21,136 [INFO] from play.api.db.DefaultDBApi in play-dev-mode-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:mysql://localhost:3306/dbplay
+2017-12-13 00:49:27,562 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-3 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2017-12-13 00:49:28,171 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-3 - Application started (Dev)
+2017-12-13 01:01:44,698 [INFO] from play.core.server.AkkaHttpServer in pool-5-thread-3 - Stopping server...
+2017-12-13 01:01:45,150 [INFO] from application in pool-5-thread-3 - Shutting down connection pool.

@@ -27,23 +27,20 @@ public class HomeController extends Controller {
 
     public Result viewpage(String page){
         Result view = null;
+        view = redirect(controllers.routes.HomeController.other());
         if(page.compareTo("home")==0){
-            view = controllers.routes.HomeController.home();
+            view = redirect(controllers.routes.HomeController.home());
         }
         if(page.compareTo("start")==0){
-            view = controllers.routes.HomeController.start();
+            view = redirect(controllers.routes.HomeController.start());
         }
         if(page.compareTo("test")==0){
-            view = controllers.routes.HomeController.test();
+            view = redirect(controllers.routes.HomeController.test());
         }
         if(page.compareTo("other")==0){
-            view = controllers.routes.HomeController.other();
-        }
-        if(view==null){
-            view = controllers.routes.HomeController.other();
-        }
-                
-        return redirect(view);
+            view = redirect(controllers.routes.HomeController.other());
+        }                
+        return view;
     }
 
     public Result home() {
