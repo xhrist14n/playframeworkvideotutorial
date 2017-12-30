@@ -30,5 +30,6 @@ testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
 
 routesGenerator := InjectedRoutesGenerator 
 
+updateOptions := updateOptions.value.withCachedResolution(true)
 
 

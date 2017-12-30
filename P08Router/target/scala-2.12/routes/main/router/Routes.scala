@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/home/vagrant/projects/play/playframeworkvideotutorial/P08Router/conf/routes
-// @DATE:Wed Dec 13 00:47:07 UTC 2017
+// @SOURCE:/home/christian/projects/play/playframeworkvideotutorial/P08Router/conf/routes
+// @DATE:Fri Dec 29 20:43:09 PET 2017
 
 package router
 
