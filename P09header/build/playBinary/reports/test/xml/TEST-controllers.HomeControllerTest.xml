@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="controllers.HomeControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-12-30T03:40:54" hostname="christian-PC" time="4.156">
+  <properties/>
+  <testcase name="testIndex" classname="controllers.HomeControllerTest" time="4.156"/>
+  <system-out><![CDATA[[?[33mwarn?[0m] application - Using the following cache for assets configuration:
+	 enabledCaching = true
+	 enabledCacheControl = false
+	 defaultCacheControl = public, max-age=3600
+	 aggressiveCacheControl = public, max-age=31536000, immutable
+	 configuredCacheControl:
+
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

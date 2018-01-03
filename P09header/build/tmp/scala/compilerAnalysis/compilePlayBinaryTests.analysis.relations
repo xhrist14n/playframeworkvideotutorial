@@ -1,0 +1,13 @@
+products:
+   test/controllers/HomeControllerTest.java -> build/playBinary/testClasses/controllers/HomeControllerTest.class
+binary dependencies:
+   test/controllers/HomeControllerTest.java -> /home/christian/.gradle/caches/modules-2/files-2.1/com.typesafe.play/play-guice_2.12/2.6.10/150254031bdff183dae3c36a9dab771d50965a23/play-guice_2.12-2.6.10.jar
+   test/controllers/HomeControllerTest.java -> /home/christian/.gradle/caches/modules-2/files-2.1/com.typesafe.play/play-test_2.12/2.6.10/7f8f50aff4dae5ee4ac79817454060282f40aed2/play-test_2.12-2.6.10.jar
+   test/controllers/HomeControllerTest.java -> /home/christian/.gradle/caches/modules-2/files-2.1/com.typesafe.play/play_2.12/2.6.10/46e64fb570ed86b552c0825dd2113e1a689f5dc/play_2.12-2.6.10.jar
+   test/controllers/HomeControllerTest.java -> /home/christian/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar
+   test/controllers/HomeControllerTest.java -> /usr/lib/jvm/java-8-oracle/jre/lib/rt.jar
+source dependencies:
+   test/controllers/HomeControllerTest.java -> test/controllers/HomeControllerTest.java
+external dependencies:
+class names:
+   test/controllers/HomeControllerTest.java -> controllers.HomeControllerTest

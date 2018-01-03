@@ -1,0 +1,8 @@
+R[[33mwarn[0m] application - Using the following cache for assets configuration:
+	 enabledCaching = true
+	 enabledCacheControl = false
+-	 defaultCacheControl = public, max-age=3600
+?	 aggressiveCacheControl = public, max-age=31536000, immutable
+	 configuredCacheControl:
+
+
