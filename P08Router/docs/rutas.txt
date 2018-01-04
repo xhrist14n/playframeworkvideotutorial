@@ -1,0 +1,22 @@
+Manipulacion de Rutas en Play Framework
+El routeador es el componente que traduce cada petitorio http entrante a una llamada de accion.
+Las rutas son definidas en el archivo de configuracion de rutas conf/routes, lo cual es compilado. 
+Esto significa que se vera los errores de ruta directamnete en el navegador.
+https://youtu.be/JwH-h9Zh_3U
+
+
+Manipulacion de Rutas en Play Framework
+El routeador es el componente que traduce cada petitorio http entrante a una llamada de accion.
+Las rutas son definidas en el archivo de configuracion de rutas conf/routes, lo cual es compilado. 
+Esto significa que se vera los errores de ruta directamnete en el navegador.
+https://www.facebook.com/playframeworkespanol/photos/a.1830689067241453.1073741828.1592887711021591/1856085694701790/?type=3&theater
+
+
+
+Manipulacion de Rutas en Play Framework
+El routeador es el componente que traduce cada petitorio http entrante a una llamada de accion.
+Las rutas son definidas en el archivo de configuracion de rutas conf/routes, lo cual es compilado. 
+Esto significa que se vera los errores de ruta directamnete en el navegador.
+https://l.facebook.com/l.php?u=https%3A%2F%2Fyoutu.be%2FJwH-h9Zh_3U&h=ATPodz6f4tvb7F80sVxKRNeNd-bniyqDMsZW3cj-u8mnm7SPj0v4f6h7h4VTE84COdDmjNM5LXuEgQ6zqnKSrJRXd1M7B09dXNlD95Zfc5qkPdQ6X1X_mHNW1w7PCqe1KnG0-sNj0uvot9_tnO2u3D6mmfSkE5FpA3S3n9Xm-mesnNHQg9wmkITdPcPc5oLEQQow89WtMgBRwRr8IkTTMW77XWEkR0Fa_0N5rBCxM1-I
+
+
