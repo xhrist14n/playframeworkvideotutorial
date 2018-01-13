@@ -1,39 +1,59 @@
--Session and Flash scopes
 
---How it is different in Play
+-Ambito de datos de Sesion y Datos Flash
 
-If you have to keep data across multiple HTTP requests, you can save them in the Session or the Flash scope. Data stored in the Session are available during the whole user session, and data stored in the flash scope are only available to the next request.
+--Que tan diferente es eso en Play Framework
 
-It’s important to understand that Session and Flash data are not stored in the server but are added to each subsequent HTTP Request, using Cookies. This means that the data size is very limited (up to 4 KB) and that you can only store string values.
+Si tienes que guardar datos a traves de mltiples petitorios HTTP, tu no debes guardarlos 
+en una sesion de usuario o en el ambito de datos Flash.
+Los datos almacenados en sessiones estan disponibles en la sesion de usuario, 
+y los datos almacenados en el ambito flash estaran solo disponibles en el siguiente petitorio.
 
-Cookies are signed with a secret key so the client can’t modify the cookie data (or it will be invalidated). The Play session is not intended to be used as a cache. If you need to cache some data related to a specific session, you can use the Play built-in cache mechanism and use the session to store a unique ID to associate the cached data with a specific user.
+Es importante entender que las Sessiones y los datos Flash no son almacenadas en el servidor 
+pero si son agregados a cada petitorio HTTP subsecuente, usando cookies.
 
---Session Configuration
+Esto significa que los datos tienen un tamaño limitado de (hasta 4kb)
+y que se debe almacenar valores en formato cadena.
+Las cookies estan firmadas con una clave secreta que no se puede modificar los 
+datos de la cookie (o se invalidara la data).
 
-Please see Configuring Session Cookies for more information for how to configure the session cookie parameters in application.conf.
-Session Timeout / Expiration
+La sesion de play no esta intentando usar la cache.
+Si se necesita la cache para almacenar datos relacionados a un sesion especifica,
+se puede usar cache del mecanismo de Play framework, y se usa la sesion 
+para almacenar un id unico para la data de la cache asociada con un usuario especifico.
 
-By default, there is no technical timeout for the Session. It expires when the user closes the web browser. If you need a functional timeout for a specific application, you set the maximum age of the session cookie by configuring the key play.http.session.maxAge in application.conf, and this will also set play.http.session.jwt.expiresAfter to the same value. The maxAge property will remove the cookie from the browser, and the JWT exp claim will be set in the cookie, and will make it invalid after the given duration. Please see Configuring Session Cookies for more information.
+--Configuracion de la session
+Para poder configurar la session en Play Framework es necesario 
+hacer uso del archivo application.conf.
+Por defecto, no hay un timeout fijo para las sesiones.
+La sesion expira cuando el usuario cierra el navegador.
+Si se necesita un timeout funcional para una aplicacion especifica ,
+se tiene que establecer un tiempo maximo de vida para la session de la cookie 
+por medio de la configuracion de la clave play.http.session.maxAge en application.conf,
+y se pondra tambien en play.http.session.jwt.expiresAfter el mismo valor.
+La propiedad maxAge sera removida la cookie del navegador, 
+y el JWT sera establecido en la cookie, se volvera invalido despues del tiempo dado.
 
---Storing data into the Session
+--Almacenando informacion en la session
 
-As the Session is just a Cookie, it is also just an HTTP header, but Play provides a helper method to store a session value:
+Como la sesion es solo una cookie, tambien se puede usar por medio de HTTP Header,
+pero Play framework provee un metodo helper para almacenar el valor de una session:
 
 public Result login() {
     session("connected", "user@gmail.com");
     return ok("Welcome!");
 }
 
-The same way, you can remove any value from the incoming session:
+La misma forma que se remueve algun valor de la session:
 
 public Result logout() {
     session().remove("connected");
     return ok("Bye");
 }
 
---Reading a Session value
+--Leyendo un valor de la sesion 
 
-You can retrieve the incoming Session from the HTTP request:
+Se puede recuperar datos de la sesion por medio de la lectura del header HTTP:
+
 
 public Result index() {
     String user = session("connected");
@@ -44,32 +64,39 @@ public Result index() {
     }
 }
 
---Discarding the whole session
+--Descartar los datos de toda la sesion
 
-If you want to discard the whole session, there is special operation:
+Si se desea descartar todos los datos se usa un solo metodo:
 
 public Result logout() {
     session().clear();
     return ok("Bye");
 }
 
---Flash scope
+--Ambito de datos Flash
 
-The Flash scope works exactly like the Session, but with two differences:
+El ambito de sesiones flash trabaja como funcionaria una sesion normal 
+pero solo tiene dos diferencias:
 
-    data are kept for only one request
-    the Flash cookie is not signed, making it possible for the user to modify it.
+    * los datos son guardados solo bajo un petitorio.
+    * la cookie flash no es firmada, haciendo posible que el usuario la modifique.
+    Nota .- el ambito de sesiones flash deberia solo ser usado para transportar mensajes de error o exito 
+    en transacciones no ajax. 
+    Como la data que se usa solo en el petitorio siguiente y para cuando no hay garantias 
+    que el pedido es parte de una aplicacion web compleja , 
+    el ambito de las sesions flash es sujeto de varias condiciones para su correcto funcionamiento.
 
-    Important: The flash scope should only be used to transport success/error messages on simple non-Ajax applications. As the data are just kept for the next request and because there are no guarantees to ensure the request order in a complex Web application, the Flash scope is subject to race conditions.
+Asi por ejemplo, despues de guardar un elemento, se debe querer guardar la redireccion que regresa a la pagina index,
+y se podria querer mostrar un mensaje en la pagina index diciendo que se guardo datos exitosamente.
+En la accion de guardar se deberia agregar un mensaje de exito en el ambito flash:
 
-So for example, after saving an item, you might want to redirect the user back to the index page, and you might want to display a message on the index page saying that the save was successful. In the save action, you would add the success message to the flash scope:
 
 public Result save() {
     flash("success", "The item has been created");
     return redirect("/home");
 }
 
-Then in the index action, you could check if the success message exists in the flash scope, and if so, render it:
+Luego la accion index, se deberia evaluar si el mensaje de exito existe en el ambito flash, y si es asi se muestra el mensaje:
 
 public Result index() {
     String message = flash("success");
@@ -79,7 +106,8 @@ public Result index() {
     return ok(message);
 }
 
-A flash value is also automatically available in Twirl templates. For example:
+Un valor flash es tambien automaticamente disponible en plantillas Twirl.
+Por ejm:
 
 @if(flash.containsKey("success")) {
   @flash.get("success")
